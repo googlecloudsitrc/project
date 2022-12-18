@@ -6,7 +6,9 @@ A static website for **cloud offerings**
 
 >Requirements
 
-Make sure You have install the Node JS 18.12.1 version on you system
+Make sure You have install the following dependency on you system
+Node JS 18.12.1
+MongoDB db version v6.0.3
 
 > Installation
 
