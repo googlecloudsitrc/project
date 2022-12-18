@@ -24,6 +24,7 @@ npm i
 npm run dev
 
 # Run Application
-Open index.html file on any browser from ./src/index.html
+In another terminal Window
+npm run start
 
 ```

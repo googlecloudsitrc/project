@@ -1,0 +1,11 @@
+<%- include("partials/header") -%>
+
+    <h1>Create your post</h1>
+    <form method="post" action="create">
+        <label>Title</label>
+        <input class="" name="postTitle" type="text">
+        <label>Content</label>
+        <textarea name="postBody" id="" cols="25" rows="8"></textarea>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="button">Publish</button>
+    </form>
+<%- include("partials/footer") -%>
