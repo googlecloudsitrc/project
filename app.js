@@ -38,7 +38,6 @@ app.get("/create", (req, res)=>{
 })
 
 app.post('/create', (req, res)=>{
-    console.log(req.body.postTitle)
     const post =new Post({
         title: req.body.postTitle,
         content: req.body.postBody
