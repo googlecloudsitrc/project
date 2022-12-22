@@ -11,7 +11,7 @@ const app = express()
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.set('view engine', 'ejs')
-app.use(express.static('src'))
+app.use('/build',express.static('build'))
 
 mongoose.connect(db,{useNewUrlParser:true,useUnifiedTopology:true})
 mongoose.connection.on("connected",() => {console.log("Connected to MongoDB!!");})
