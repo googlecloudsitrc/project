@@ -10,6 +10,7 @@ const db = "mongodb://localhost:27017/blog"
 const app = express()
 app.use(bodyParser.urlencoded({extended: true}));
 
+mongoose.set('strictQuery', false);
 app.set('view engine', 'ejs')
 app.use(express.static('src'))
 
