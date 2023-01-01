@@ -1,14 +1,11 @@
 <%-include("partials/header")-%>
-  <h1 class="text-center text-3xl underline mt-40">
+  <h1 class="text-center text-3xl underline mt-40 text-sky-400">
     GCP Project
   </h1>
   <% posts.forEach((post)=>{ %>
-
     <h1><%= post.title %></h1>
     <p><%= post.content.substring(0, 100) + " ... " %>
     <a href="/posts/<%=post._id%>">Explore More</a>
   </p>
-
   <% }) %>
-  <%-include("partials/footer")-%>
-
+ <%-include("partials/footer")-%>
