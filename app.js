@@ -22,7 +22,11 @@ mongoose.connection.on("error",(err) => {console.log("Failed to connect to Mongo
 
 const postSchema = {
     title: String,
-    content: String
+    content: String,
+    path: String,
+    date_added: {
+        type: Date,
+    }
 }
 
 const Post = mongoose.model("Post", postSchema)
@@ -43,12 +47,14 @@ app.get("/create", (req, res)=>{
 app.post('/create', (req, res)=>{
     const post =new Post({
         title: req.body.postTitle,
-        content: req.body.postBody
+        content: req.body.postBody,
+        path: req.body.path,
+        date_added: req.body.date,
     })
 
     post.save((err)=>{
         if (!err){
-            res.redirect("/")
+            res.redirect("/create")
         }
     })
 })
@@ -59,7 +65,10 @@ app.get("/posts/:postName", (req,res)=>{
     Post.findOne({_id: requestedPostId}, (err, post)=>{
         res.render("posts",{
             title: post.title,
-            content: post.content
+            content: post.content,
+            path: post.path,
+            date: post.data_added
+
         })
     })
 })

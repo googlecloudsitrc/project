@@ -1,9 +1,124 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../build/output.css" rel="stylesheet">
-  <title>Doc</title>
+  <title>Google Cloud Project</title>
+  <link rel="stylesheet" href="https://neerajadhav.in/gdsc/css/custom.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
 </head>
+
 <body>
+  <div class="wrapper w-full bg-white border-b z-30 relative">
+    <div class="header-wrapper container mx-auto">
+
+
+        <header class="relative z-50 w-full flex-none text-sm font-semibold leading-6 text-slate-900">
+          <nav aria-label="Global" class="mx-auto max-w-container px-4 lg:px-0">
+            <div class="flex items-center py-5">
+
+              <a class="mr-auto flex-none text-slate-900" href="/">
+                <span class="sr-only">GDSC SITRC</span>
+                GDSC SITRC
+              </a>
+              <button type="button" class="flex h-8 w-8 text-2xl items-center justify-center lg:hidden"
+                onclick="leftopen()">
+                <span class="sr-only">Open navigation</span>
+                <i class='bx bx-expand-alt bx-rotate-90'></i>
+              </button>
+
+              <button type="button" class="-my-1 ml-6 -mr-1 flex h-8 w-8 items-center justify-center lg:hidden text-2xl"
+                onclick="rightopen()">
+                <span class="sr-only">Open navigation</span>
+                <i class='bx bx-category-alt'></i>
+              </button>
+              <div class="hidden lg:ml-8 lg:flex lg:items-center lg:pl-8">
+                <a class="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700 -my-2.5 ml-8"
+                  href="/">
+                  <span>Join Club <span aria-hidden="true">→</span></span>
+                </a>
+              </div>
+            </div>
+          </nav>
+        </header>
+    </div>
+  </div>
+  <div class="wrapper w-full">
+    <div class="content-wrapper flex mx-auto justify-between container">
+      <div id="leftoverlay" class="overlay bg-black opacity-50 fixed w-full h-screen z-40 top-0 left-0 hidden lg:hidden"
+        onclick="leftover()"></div>
+      <div id="leftaside"
+        class="left-aside lg:block w-[300px] lg:w-2/12 h-screen lg:sticky fixed z-50 left-[-300px] top-0 duration-300 bg-white lg:bg-transparent">
+        <div class="w-full lg:border rounded-2xl bg-white lg:my-5 select-none">
+          <div class="w-full">
+            <p class="px-5 py-3 text-sm text-gray-700 font-bold">Menu</p>
+            <hr class="m-0">
+          </div>
+          <aside class="flex flex-col p-2 text-sm">
+
+
+            <a href="/" class="flex items-center space-x-3 rounded-xl p-2 hover:bg-gray-100  text-sky-500 ">
+              <span class="text-2xl">
+                <i class='bx bx-home-alt'></i>
+              </span>
+              <span class="font-semibold">Home</span>
+            </a>
+
+
+            <a href="/create" class="flex items-center space-x-3 rounded-xl p-2 hover:bg-gray-100  text-gray-600 ">
+              <span class="text-2xl">
+                <i class='bx bx-info-circle'></i>
+              </span>
+              <span class="font-semibold">Create</span>
+            </a>
+
+          </aside>
+          <hr>
+          <div class="w-full bg-white lg:rounded-b-2xl">
+            <div class="flex p-3 flex-wrap">
+
+
+              <a href="#" class="flex items-center space-x-3 rounded-xl p-2 text-gray-600">
+                <span class="text-2xl text-blue-700">
+                  <i class='bx bx-news'></i>
+                </span>
+              </a>
+
+              <a href="#" class="flex items-center space-x-3 rounded-xl p-2 text-gray-600">
+                <span class="text-2xl text-black">
+                  <i class='bx bxl-github'></i>
+                </span>
+              </a>
+
+              <a href="#" class="flex items-center space-x-3 rounded-xl p-2 text-gray-600">
+                <span class="text-2xl text-[#cd486b]">
+                  <i class='bx bxl-instagram'></i>
+                </span>
+              </a>
+
+              <a href="#" class="flex items-center space-x-3 rounded-xl p-2 text-gray-600">
+                <span class="text-2xl text-[#0077b5]">
+                  <i class='bx bxl-linkedin'></i>
+                </span>
+              </a>
+
+              <a href="#" class="flex items-center space-x-3 rounded-xl p-2 text-gray-600">
+                <span class="text-2xl text-[#1DA1F2]">
+                  <i class='bx bxl-twitter'></i>
+                </span>
+              </a>
+
+            </div>
+            <hr class="m-0">
+            <p class="px-5 py-3 text-sm text-gray-700">&copy; 2022 GDSC SITRC</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content w-full lg:w-8/12 md:p-5">
