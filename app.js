@@ -2,10 +2,12 @@ const express = require('express')
 const ejs = require('ejs')
 const bodyParser = require('body-parser')
 const mongoose =require('mongoose')
+const dotenv = require('dotenv').config()
 
 
-const port = 3000
-const db = "mongodb://localhost:27017/blog"
+const port = process.env.PORT;
+const db = process.env.DB_URL;
+
 
 const app = express()
 app.use(bodyParser.urlencoded({extended: true}));
