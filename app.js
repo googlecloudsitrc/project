@@ -2,11 +2,10 @@ const express = require('express')
 const ejs = require('ejs')
 const bodyParser = require('body-parser')
 const mongoose =require('mongoose')
-const dotenv = require('dotenv').config()
 
 
-const port = process.env.PORT;
-const db = process.env.DB_URL;
+const port = 5000;
+const db = 'mongodb+srv://gdscsitrc:Gdscsitrc%4021@cluster0.epsbcnt.mongodb.net/?retryWrites=true&w=majority';
 
 
 const app = express()
