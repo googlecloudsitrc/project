@@ -2,10 +2,15 @@ const express = require('express')
 const ejs = require('ejs')
 const bodyParser = require('body-parser')
 const mongoose =require('mongoose')
+const dotenv = require('dotenv').config();
+const jwt = require ('jsonwebtoken')
+const bcrypt = require('bcrypt');
+const Cookies = require('universal-cookie')
 
 
-const port = 8080;
-const db = 'mongodb+srv://gdscsitrc:Gdscsitrc%4021@cluster0.epsbcnt.mongodb.net/?retryWrites=true&w=majority';
+const port = process.env.PORT;
+const db = process.env.DB_URL;
+const SECRET = process.env.JWT_SECRET;
 
 
 const app = express()
@@ -28,7 +33,18 @@ const postSchema = {
     }
 }
 
+const userSchema = {
+    email: {
+        type:String
+    },
+    password:{
+        type: String
+    }
+}
+
 const Post = mongoose.model("Post", postSchema)
+
+const User = mongoose.model("User", userSchema)
 
 app.get('/', (req, res)=>{
     
@@ -39,11 +55,28 @@ app.get('/', (req, res)=>{
     })
 })
 
-app.get("/create", (req, res)=>{
-    res.render("create")
-})
+app.get("/create",async (req,res,next) => {
+        try{
+           const cookies = new Cookies(req.headers.cookie);
+           getToken = cookies.get('token')
+           console.log(cookies.get('token'))
 
-app.post('/create', (req, res)=>{
+           const decoded = await jwt.verify(
+               getToken,
+               SECRET
+           )
+           const user = await decoded;
+           req.user = user;
+           res.render('create')
+        }
+        catch (err){
+           res.status(401).redirect("login")
+           console.log(err)
+        }
+   }
+)
+
+app.post('/create',(req, res)=>{
     const post =new Post({
         title: req.body.postTitle,
         content: req.body.postBody,
@@ -57,6 +90,57 @@ app.post('/create', (req, res)=>{
         }
     })
 })
+
+app.get("/login", (req,res)=>{
+    res.render("login")
+})
+app.post("/login", (req,res)=>{
+    User.findOne({email: req.body.email}).then((user)=>{
+        bcrypt.compare(req.body.password, user.password).then((match)=>{
+            if(!match){
+                return res.status(500).send({error: "Invalid Email and Paasword"})
+            }
+
+            const token = jwt.sign({userID: user._id, userEmail: user.email}, SECRET)
+            res.cookie("token", token);
+            res.status(500).redirect("create",token, user)
+        })
+    }).catch((err) => {
+        res.status(500).send("Email not Found")
+    })
+}
+ )
+// In case of signup functionality // 
+// app.get("/signup", (req,res)=>{
+//     res.render("login")
+// })
+// app.post("/signup", (req, res) => {
+
+//     const { email, password } = req.body;
+
+//     if (!email || !password) {
+//         return res.status(422).send({ error: "Please enter all the fields" })
+//     }
+
+//     if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
+//         return res.status(422).send({ error: "Please enter valid Email!" })
+//     }
+
+//     bcrypt.hash(password, 10).then((hashedPassword) => {
+//         const user = new User({
+//             email,
+//             password: hashedPassword
+//         })
+
+//         user.save()
+//             .then((user) => {
+//                 res.status(200).json({ message: "User Signed Up Successfully", user })
+//             })
+//             .catch((err) => { res.send(err) })
+//     })
+
+// }
+//  )
 
 app.get("/posts/:postName", (req,res)=>{
     const requestedPostId = req.params.postName
